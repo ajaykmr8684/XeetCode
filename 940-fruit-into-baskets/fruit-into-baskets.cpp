@@ -12,7 +12,7 @@ public:
             umap[fruits[r]]++;
             if(umap.size() > 2)
             {
-                while(umap.size() > 2)
+                if(umap.size() > 2)
                 {
                     umap[fruits[l]]--;
                     if(umap[fruits[l]] == 0)
@@ -22,7 +22,7 @@ public:
                     l++;
                 }
             }
-            ans = max(ans, r - l + 1);
+            if(umap.size() <= 2) ans = max(ans, r - l + 1);
             r++;
         }
 
