@@ -1,31 +1,23 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        set<char> duplicates;
+        unordered_map<char, int> umap;
 
-        int left = 0;
-        int right = 0;
-        int len = 0;
+        int l = 0;
+        int r = 0;
+        int maxi = 0;
 
-        while(right < s.length())
+        while(r < s.length())
         {
-            if(duplicates.find(s[right]) != duplicates.end())
+            if(umap.find(s[r]) != umap.end())
             {
-                while(duplicates.find(s[right]) != duplicates.end())
-                {
-                    duplicates.erase(s[left]);
-                    left++;
-                }
+                l = max(l, umap[s[r]] + 1);
             }
-            else
-            {
-                duplicates.insert(s[right]);
-                len = max(len, right - left + 1);
-                right++;
-            }
-
+            umap[s[r]] = r;
+            maxi = max(maxi, r - l + 1);
+            r++;
         }
 
-        return len;
+        return maxi;
     }
 };
