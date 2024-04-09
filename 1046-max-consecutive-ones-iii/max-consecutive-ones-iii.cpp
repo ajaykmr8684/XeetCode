@@ -15,17 +15,11 @@ public:
 
             if(zeros > k)
             {
-                while(zeros > k)
-                {
-                    if(nums[l] == 0)
-                    {
-                        zeros--;
-                    }
-                    l++;
-                }
+                if(nums[l] == 0) zeros--;
+                l++;
             }
-
-            ans = max(ans, r - l + 1);
+            
+            if(zeros <=k) ans = max(ans, r - l + 1);
             r++;
         }
 
