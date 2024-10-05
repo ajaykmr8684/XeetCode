@@ -1,6 +1,7 @@
 class Solution {
 public:
-    void changeToSumOfDigits(vector<int> &nums) {
+    int minElement(vector<int>& nums) {
+        int mini = INT_MAX;
         for(int i = 0; i < nums.size(); ++i) {
             int sum = 0;
             int v = nums[i];
@@ -9,14 +10,7 @@ public:
                 sum += digit;
                 v /= 10;
             }
-            nums[i] = sum;
-        }
-    }
-    int minElement(vector<int>& nums) {
-        changeToSumOfDigits(nums);
-        int mini = INT_MAX;
-        for(auto v: nums) {
-            mini = min(mini, v);
+            mini = min(sum, mini);
         }
         return mini;
     }
